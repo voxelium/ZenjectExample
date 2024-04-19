@@ -7,16 +7,20 @@ using Zenject;
 public class Printer : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI textMesh;
-    private SceneManager _printManager;
+    private SceneManager _sceneManager;
 
 
+    //Это лучше чем просто добавлять тег Inject к объявлению переменной, которую нужно прокинуть.
+    //потому что можно что-то добавить в момент когда Inject произошел. Например Debug.Log
     [Inject]
-    private void Construct(SceneManager printManager)
+    private void Construct(SceneManager sceneManager)
     {
-        _printManager = printManager;
+        _sceneManager = sceneManager;
+        // Debug.Log("sceneManager injected succesfull");
     }
 
 
+    //Печатаем на экране
     public void PrintNumberOnScreen()
     {
         string textValue = textMesh.text;
@@ -24,11 +28,11 @@ public class Printer : MonoBehaviour
 
         if (int.TryParse(textValue, out currentNumber))
         {
-            currentNumber += _printManager.PrintNumber;
+            currentNumber += _sceneManager.PrintNumber;
         }
         else
         {
-            currentNumber = _printManager.PrintNumber;
+            currentNumber = _sceneManager.PrintNumber;
         }
 
         textMesh.text = currentNumber.ToString();
