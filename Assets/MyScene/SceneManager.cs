@@ -1,5 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
+
 using UnityEngine;
 using Zenject;
 
@@ -13,7 +12,7 @@ public class SceneManager : MonoBehaviour
 
     public void Spawning()
     {
-        //С этим способом не получиться прокидывались инджектированные переменные
+        //С этим способом не получится прокидывать инджектированные переменные
         // Instantiate(spawningObject);
 
         //это способ спавнить объекты чтобы в момент их спавна прокидывались инджектированные переменные
